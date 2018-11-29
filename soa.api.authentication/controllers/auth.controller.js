@@ -18,13 +18,13 @@ router.post('/register', function (req, res) {
         password: hashedPassword
     }, (err, user) => {
         if (err) {
-            return res.sendStatus(500).send("There was a problem registering the user.");
+            return res.status(500).send("There was a problem registering the user.");
         }
         // create a token
         const token = jwt.sign({ id: user._id }, config.authKey, {
             expiresIn: 86400 // expires in 24 hours
         });
-        res.sendStatus(200).send({ token: token });
+        res.status(200).send({ token: token });
     });
 
 });
@@ -32,19 +32,19 @@ router.post('/register', function (req, res) {
 router.post('/login', (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user) {
-            return res.sendStatus(401).send({ message: 'Username or password is invalid' });
+            return res.status(401).send({ message: 'Username or password is invalid' });
         }
 
         const isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
         if (!isPasswordValid) {
-            return res.sendStatus(401).send({ message: 'Username or password is invalid' });
+            return res.status(401).send({ message: 'Username or password is invalid' });
         }
 
         // get authentication token
         const token = jwt.sign({ id: user._id }, config.authKey, {
             expiresIn: config.authExp
         });
-        return res.sendStatus(200).send({ token: token });
+        return res.status(200).send({ token: token });
     });
 });
 
