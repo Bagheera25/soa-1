@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const BookSchema = new mongoose.Schema({
     isbn: String,
     title: String,
-    publishDate: Date
+    publishDate: Date,
+    authors: [String]
 });
 
 mongoose.model('Book', BookSchema);
