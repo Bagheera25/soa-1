@@ -3,7 +3,8 @@ const BookSchema = new mongoose.Schema({
     isbn: String,
     title: String,
     publishDate: Date,
-    authors: [String]
+    authors: [String],
+    source: String
 });
 
 mongoose.model('Book', BookSchema);
