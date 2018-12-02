@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Email address</label>
+        <input type="text" formControlName="username" class="form-control" id="username" placeholder="Username"
+        [ngClass]="{'form-control--valid' : form.username.valid && form.username.dirty, 'form-control--invalid' : form.username.invalid && form.username.dirty}">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password"
+        [ngClass]="{'form-control--valid' : form.password.valid && form.password.dirty, 'form-control--invalid' : form.password.invalid && form.password.dirty}">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+      <div class="text-center mt-2">
+        Don't have an account <a [routerLink]="'/register'">Register here</a>
+      </div>
+    </form>    
+  </div>
+  <div class="col-3"></div>
+</div>

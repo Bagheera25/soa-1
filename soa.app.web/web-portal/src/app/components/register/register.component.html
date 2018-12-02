@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Full Name" [ngClass]="{'form-control--valid' : form.name.valid && form.name.dirty, 'form-control--invalid' : form.name.invalid && form.name.dirty}">
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" id="username" placeholder="Username" [ngClass]="{'form-control--valid' : form.username.valid && form.username.dirty, 'form-control--invalid' : form.username.invalid && form.username.dirty}">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password" [ngClass]="{'form-control--valid' : form.password.valid && form.password.dirty, 'form-control--invalid' : form.password.invalid && form.password.dirty}">>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Register</button>
+      <div class="text-center mt-2">
+        If you aleady have an account <a [routerLink]="'/login'">Login here</a>
+      </div>
+    </form>
+  </div>
+  <div class="col-3"></div>
+</div>

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import '../node_modules/angular-notifier/styles.scss';
+
+.form-control {
+    &--valid {
+        border-color: #28a745;
+        color: #28a745;
+    }
+    &--invalid {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+}

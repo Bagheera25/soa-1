@@ -1,0 +1,32 @@
+<h2 class="text-center">Looking for a specific book?</h2>
+<h4 class="text-center mb-4">Type in the ISBN below</h4>
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <form [formGroup]="isbnForm" (ngSubmit)="onSubmit()" class="">
+      <div class="form-row">
+        <div class="col-9">
+          <input type="text" formControlName="isbn" class="form-control" id="isbn" placeholder="isbn ..." [ngClass]="{'form-control--valid' : form.isbn.valid && form.isbn.dirty, 'form-control--invalid' : form.isbn.invalid && form.isbn.dirty}">
+        </div>
+        <div class="col-3">
+          <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-3"></div>
+</div>
+<div class="row mt-4" *ngIf="books">
+  <div class="col-4" *ngFor="let book of books">
+    <div class="card">
+      <img class="card-img-top" [src]="'https://via.placeholder.com/250?text=' + book.title" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{book.title}}</h5>
+        <p class="card-text">{{book.isbn}} - <span class="badge badge-primary ml-2" *ngFor="let a of book.authors">{{a}}</span></p>
+        <p class="card-text">{{book.publishedDate}} - {{book.source}}</p>
+        <button *ngIf="!book.is_fav" (click)="addToFavorite($event, book)" class="btn btn-primary">Add to favorite</button>
+        <button *ngIf="book.is_fav" (click)="removeFromFavorite($event, book)" class="btn btn-success">Remove from favorite</button>
+      </div>
+    </div>
+  </div>
+</div>
