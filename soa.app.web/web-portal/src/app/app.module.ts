@@ -11,7 +11,7 @@ import { SearchComponent } from './components/search/search.component';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WebStorageModule } from 'ngx-store';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NotifierModule } from 'angular-notifier';
+import { NotifierModule } from 'angular-notifier'; 
 
 @NgModule({
   declarations: [

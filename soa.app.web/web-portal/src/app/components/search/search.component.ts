@@ -23,14 +23,16 @@ export class SearchComponent implements OnInit {
 
   errorMessages = [];
 
-  books: Book[] = [{
-    title: 'Dummy book',
-    isbn: 'TEST123',
-    publishedDate: Date.now(),
-    authors: ['John Lenon', 'Mark Richards'],
-    source: 'Worlds library',
-    is_fav: false
-  }];
+  books: Book[] = [];
+  
+  // [{
+  //   title: 'Dummy book',
+  //   isbn: 'TEST123',
+  //   publishedDate: Date.now(),
+  //   authors: ['John Lenon', 'Mark Richards'],
+  //   source: 'Worlds library',
+  //   is_fav: false
+  // }];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,14 +57,17 @@ export class SearchComponent implements OnInit {
 
     this.loading = true;
     this.booksService.search(this.form.isbn.value)
-      .subscribe((data: Book[]) => {
+      .subscribe((data: any) => {
         this.loading = false;
-        this.books = data;
+        this.books = data.books;
       }, (err: HttpErrorResponse) => {
         this.loading = false;
         this.books = [];
-        console.log(err);
-        this.notifier.notify('error', 'There was an error. Please contact support');
+        if (err.status === 422) {
+          this.notifier.notify('info', err.error.message);
+        } else {
+          this.notifier.notify('error', 'There was an error. Please contact support');
+        }
       });
   }
 

@@ -3,10 +3,6 @@ version: '3.4'
 services:
   # portal.web:
   #   image: soa/portal.web
-  #   # environment:
-  #   #   - CatalogUrl=http://catalog.api
-  #   #   - OrderingUrl=http://ordering.api
-  #   #   - BasketUrl=http://basket.api
   #   ports:
   #     - "4200:4200"
   #   depends_on:
@@ -15,26 +11,14 @@ services:
 
   authentication.api:
     image: soa/authentication.api
-    # environment:
-    #   - ConnectionString=Server=sql.data;Initial Catalog=CatalogData;User Id=sa;Password=your@password
-    # expose:
-    #   - "3001"
+    expose:
+      - "3000"
     ports:
-      - "3001:3001"
-    #extra hosts can be used for standalone SQL Server or services at the dev PC
-    # extra_hosts:
-    #   - "CESARDLSURFBOOK:10.0.75.1"
-    # depends_on:
-    #   - sql.data
+      - "3000:3000"
 
   books.api:
     image: soa/books.api
-    # environment:
-    #   - ConnectionString=Server=sql.data;Database=Services.OrderingDb;User Id=sa;Password=your@password
+    expose:
+      - "3001"
     ports:
-      - "3000:3000"
-    #extra hosts can be used for standalone SQL Server or services at the dev PC
-    # extra_hosts:
-    #   - "CESARDLSURFBOOK:10.0.75.1"
-    # depends_on:
-    #   - sql.data
+      - "3001:3001"

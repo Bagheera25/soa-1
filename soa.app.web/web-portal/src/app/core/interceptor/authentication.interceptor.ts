@@ -14,11 +14,11 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with token if available
-        const token = this.authenticationService.getLoginToken();
-        if (token !== null) {
+        const tokenObj = this.authenticationService.getLoginToken();
+        if (tokenObj !== null) {
             request = request.clone({
                 setHeaders: {
-                    'x-access-token': `${token.access_token}`
+                    'x-access-token': `${tokenObj.token}`
                 }
             });
         }
@@ -42,7 +42,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
         // clear stored credentials; they're invalid
         this.authenticationService.logout();
         // // navigate back to the login page
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
     }
 
 }

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/search']);
       }, (err: HttpErrorResponse) => {
         this.loading = false;
-        if (err.status === 401) {
+        if (err.status === 422) {
           this.notifier.notify('error', 'Username or password is invalid');
         } else {
           this.notifier.notify('error', 'There was an error. Please contact support');

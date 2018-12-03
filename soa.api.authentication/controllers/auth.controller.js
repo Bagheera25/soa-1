@@ -32,12 +32,12 @@ router.post('/register', function (req, res) {
 router.post('/login', (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user) {
-            return res.status(401).send({ message: 'Username or password is invalid' });
+            return res.status(422).send({ message: 'Username or password is invalid' });
         }
 
         const isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
         if (!isPasswordValid) {
-            return res.status(401).send({ message: 'Username or password is invalid' });
+            return res.status(422).send({ message: 'Username or password is invalid' });
         }
 
         // get authentication token
