@@ -21,3 +21,17 @@ Below is the system architecture:
 
 ### BPMN
 ![alt text](https://i.imgur.com/uwbfCdV.jpg)
+
+
+## SOA Patterns Used
+
+- **Authentication Broker**
+An authentication broker assumes responsibility for authenticating consumers. Consumers are issued a token they can use to access services. 
+
+- **Service Façade**
+A service façade sits between a service and a contract. It eliminates the tight coupling between the service and its contract. This is intended to minimize changes to the service if the contract changes. A service can have multiple service façades to support multiple contracts. 
+
+- **Message Translator**
+The Message Translator is the messaging equivalent of the Adapter pattern. An adapter converts the interface of a component into a another interface so it can be used in a different context.
+
+
